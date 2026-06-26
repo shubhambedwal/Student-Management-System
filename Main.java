@@ -2,20 +2,20 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in); //Scanner for input
 
         System.out.print("Username: ");
-        String u = sc.nextLine();
+        String u = sc.nextLine();  //u for user name
 
         System.out.print("Password: ");
-        String p = sc.nextLine();
+        String p = sc.nextLine();   //p for password
 
         if(!u.equals("admin") || !p.equals("admin123")) {
             System.out.println("Invalid Login!");
             return;
         }
 
-        StudentDAO dao = new StudentDAO();
+        StudentDAO dao = new StudentDAO();  //connection to studentDAO
 
         while(true) {
             System.out.println("\n1.Add Student");
