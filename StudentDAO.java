@@ -5,7 +5,7 @@ public class StudentDAO {
     public void addStudent(Student s){
         try(Connection con=DatabaseConnection.getConnection()){
             String sql="insert into students(name,roll_no,department,email,phone,marks) values(?,?,?,?,?,?)";
-            PreparedStatement ps=con.prepareStatement(sql);
+            PreparedStatement ps=con.prepareStatement(sql);  //database connection for data management
 
             ps.setString(1,s.getName());
             ps.setString(2,s.getRollNo());
