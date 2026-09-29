@@ -44,8 +44,25 @@ public class Main {
                     System.out.print("Phone: ");
                     String phone = sc.nextLine();
 
-                    System.out.print("Marks: ");
-                    double marks = sc.nextDouble();
+                    double marks;
+
+                    while (true) {
+                    System.out.print("Marks (0-100): ");
+
+            try {
+                    marks = Double.parseDouble(sc.nextLine());
+
+                    if (marks < 0 || marks > 100) {
+                    System.out.println("Marks must be between 0 and 100.");
+                    continue;
+                }
+
+                break;
+
+                } catch (NumberFormatException e) {
+                        System.out.println("Please enter a valid number.");
+                }
+        }
 
                     dao.addStudent(new Student(name, roll, dept, email, phone, marks));
                     break;
