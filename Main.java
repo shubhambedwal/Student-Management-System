@@ -56,12 +56,14 @@ public class Main {
 
                 case 3:
                     System.out.print("Roll No: ");
-                    dao.deleteStudent(sc.nextLine());
+                    String deleteRoll = sc.nextLine();
+                    dao.deleteStudent(deleteRoll);
                     break;
 
                 case 4:
                     System.out.print("Roll No: ");
-                    dao.searchStudent(sc.nextLine());
+                    String searchRoll = sc.nextLine();
+                    dao.searchStudent(searchRoll);
                     break;
 
                 case 5:
