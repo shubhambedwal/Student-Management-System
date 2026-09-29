@@ -16,7 +16,9 @@ public class StudentDAO {
 
             ps.executeUpdate();
             System.out.println("Student Added");
-        }catch(Exception e){e.printStackTrace();}
+        }catch (SQLException e) {
+    System.err.println("Database error: " + e.getMessage());
+}
     }
 
     public void viewStudents(){
@@ -25,7 +27,9 @@ public class StudentDAO {
             while(rs.next()){
                 System.out.println(rs.getString("roll_no")+" | "+rs.getString("name")+" | "+rs.getDouble("marks"));
             }
-        }catch(Exception e){e.printStackTrace();}
+        }catch (SQLException e) {
+    System.err.println("Database error: " + e.getMessage());
+}
     }
 
     public void deleteStudent(String rollNo){
@@ -33,7 +37,9 @@ public class StudentDAO {
             PreparedStatement ps=con.prepareStatement("delete from students where roll_no=?");
             ps.setString(1,rollNo);
             ps.executeUpdate();
-        }catch(Exception e){e.printStackTrace();}
+        }catch (SQLException e) {
+    System.err.println("Database error: " + e.getMessage());
+}
     }
 
     public void searchStudent(String rollNo){
@@ -44,6 +50,8 @@ public class StudentDAO {
             while(rs.next()){
                 System.out.println(rs.getString("name"));
             }
-        }catch(Exception e){e.printStackTrace();}
+        }catch (SQLException e) {
+    System.err.println("Database error: " + e.getMessage());
+}
     }
 }
