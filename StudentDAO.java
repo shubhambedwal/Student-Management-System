@@ -22,13 +22,27 @@ public class StudentDAO {
     }
 
     public void viewStudents(){
-        try(Connection con=DatabaseConnection.getConnection()){
-            ResultSet rs=con.createStatement().executeQuery("select * from students");
-            while(rs.next()){
-                System.out.println(rs.getString("roll_no")+" | "+rs.getString("name")+" | "+rs.getDouble("marks"));
-            }
-        }catch (SQLException e) {
-    System.err.println("Database error: " + e.getMessage());
+      public void viewStudents() {
+
+    String sql = "SELECT roll_no, name, marks FROM students";
+
+    try (Connection con = DatabaseConnection.getConnection();
+         PreparedStatement ps = con.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+
+        while (rs.next()) {
+            System.out.println(
+                rs.getString("roll_no") + " | " +
+                rs.getString("name") + " | " +
+                rs.getDouble("marks")
+            );
+        }
+
+    } catch (SQLException e) {
+        System.err.println("Unable to load students.");
+        e.printStackTrace();
+    }
+}
 }
     }
 
