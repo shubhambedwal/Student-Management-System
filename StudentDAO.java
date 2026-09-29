@@ -49,8 +49,28 @@ public class StudentDAO {
     public void deleteStudent(String rollNo){
         try(Connection con=DatabaseConnection.getConnection()){
             PreparedStatement ps=con.prepareStatement("delete from students where roll_no=?");
-            ps.setString(1,rollNo);
-            ps.executeUpdate();
+           public void deleteStudent(String rollNo) {
+
+    String sql = "DELETE FROM students WHERE roll_no = ?";
+
+    try (Connection con = DatabaseConnection.getConnection();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setString(1, rollNo);
+
+        int rows = ps.executeUpdate();
+
+        if (rows > 0) {
+            System.out.println("Student deleted successfully.");
+        } else {
+            System.out.println("Student not found.");
+        }
+
+    } catch (SQLException e) {
+        System.err.println("Delete failed.");
+        e.printStackTrace();
+    }
+}
         }catch (SQLException e) {
     System.err.println("Database error: " + e.getMessage());
 }
