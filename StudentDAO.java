@@ -80,9 +80,21 @@ public class StudentDAO {
             PreparedStatement ps=con.prepareStatement("select * from students where roll_no=?");
             ps.setString(1,rollNo);
             ResultSet rs=ps.executeQuery();
-            while(rs.next()){
-                System.out.println(rs.getString("name"));
-            }
+            boolean found = false;
+
+            while (rs.next()) {
+            found = true;
+
+            System.out.println("Name: " + rs.getString("name"));
+            System.out.println("Department: " + rs.getString("department"));
+            System.out.println("Email: " + rs.getString("email"));
+            System.out.println("Phone: " + rs.getString("phone"));
+            System.out.println("Marks: " + rs.getDouble("marks"));
+}
+
+        if (!found) {
+            System.out.println("Student not found.");
+}
         }catch (SQLException e) {
     System.err.println("Database error: " + e.getMessage());
 }
