@@ -1,12 +1,23 @@
 import java.sql.*;
 
 public class DatabaseConnection {
-    private static final String URL="jdbc:mysql://localhost:3306/smartstudent";
-    private static final String USER="root";
-    private static final String PASSWORD="";
+    db.url=jdbc:mysql://localhost:3306/smartstudent
+    db.username=root
+    db.password=YOUR_PASSWORD
 
     public static Connection getConnection() throws Exception {
-        Class.forName("com.mysql.cj.jdbc.Driver");
+        Properties properties = new Properties();
+
+try (InputStream input =
+         DatabaseConnection.class
+             .getClassLoader()
+             .getResourceAsStream("db.properties")) {
+
+    properties.load(input);
+
+} catch (IOException e) {
+    throw new RuntimeException("Unable to load database configuration", e);
+}
         return DriverManager.getConnection(URL,USER,PASSWORD);
     }
 }
